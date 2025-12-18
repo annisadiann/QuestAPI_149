@@ -9,13 +9,13 @@ import retrofit2.http.PUT
 import retrofit2.http.Query
 
 interface ServiceApiSiswa {
-    @GET(value = "bacaTeman.php")
+    @GET("bacaTeman.php")
     suspend fun getSiswa() : List<DataSiswa>
 
-    @POST(value = "insertTM.php")
+    @POST("insertTM.php")
     suspend fun postSiswa(@Body dataSiswa : DataSiswa) : retrofit2.Response<Void>
 
-    //@GET("baca1Teman.php/{id}")
+    //@GET("bacaTeman.php/{id}")
     //suspend fun getSatuSiswa(@Query("id") id : Int): DataSiswa
 
     //@PUT("editTM.php/{id}")
