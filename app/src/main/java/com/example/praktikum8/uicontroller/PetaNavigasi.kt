@@ -14,26 +14,47 @@ import com.example.praktikum8.view.EntrySiswaScreen
 import com.example.praktikum8.view.HomeScreen
 
 @Composable
-fun DataSiswaApp(navController: NavHostController = rememberNavController(),
-                 modifier: Modifier = Modifier){
-    HostNavigasi(navController = navController)
+fun DataSiswaApp(
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController()
+) {
+    HostNavigasi(
+        navController = navController,
+        modifier = modifier
+    )
 }
 
 @Composable
 fun HostNavigasi(
     navController: NavHostController,
     modifier: Modifier = Modifier
-){
-    NavHost(navController = navController, startDestination = DestinasiHome.route,
-        modifier = Modifier ){
+) {
+    NavHost(
+        navController = navController,
+        startDestination = DestinasiHome.route,
+        modifier = modifier
+    ) {
         composable(DestinasiHome.route) {
-            HomeScreen(navigateToItemEntry = { navController.navigate(DestinasiEntry.route) },
-                navigateToItemUpdate = {
-//                    navController.navigate("${DestinasiDetail.route}/${it}")
-                })
+            HomeScreen(
+                navigateToItemEntry = { navController.navigate(DestinasiEntry.route) },
+                navigateToItemUpdate = { idSiswa ->
+                }
+            )
         }
-        composable(DestinasiEntry.route){
-            EntrySiswaScreen(navigateBack = { navController.navigate(DestinasiHome.route) })
+
+        composable(DestinasiEntry.route) {
+            EntrySiswaScreen(
+                navigateBack = { navController.popBackStack() }
+            )
         }
+
+        composable(DestinasiDetail.routeWithArgs,arguments = listOf(navArgument(DestinasiDetail
+            .itemIdArg) {
+            type = navType.IntType })
+        ){
+            DetailSiswaScreen(navigateToEditItem = {navController.navigate("${DestinasiEdit.route}/$it")},
+                navigateBack = {navController.navigate(DestinasiHome.route) })
+        }
+
     }
 }
