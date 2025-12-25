@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.praktikum8.modeldata.DataSiswa
 import com.example.praktikum8.repositori.RepositoryDataSiswa
+import com.example.praktikum8.uicontroller.route.DestinasiDetail
 import kotlinx.coroutines.launch
 import okio.IOException
 import retrofit2.HttpException
